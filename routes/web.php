@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,38 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('pdf')->group(function () {
+    Route::get('/view', function () {
+        return view('pdf.invoice', [
+            'id' => __LINE__,
+        ]);
+    });
+
+    Route::get('/stream', function () {
+        $pdf = Pdf::loadView('pdf.invoice', [
+            'id' => __LINE__,
+        ]);
+
+        return $pdf->stream('invoice.pdf');
+    });
+
+    Route::get('/download', function () {
+        $pdf = Pdf::loadView('pdf.invoice', [
+            'id' => __LINE__,
+        ]);
+
+        return $pdf->download('invoice.pdf');
+    });
+
+    Route::get('/generate', function () {
+        $pdf = Pdf::loadView('pdf.invoice', [
+            'id' => __LINE__,
+        ]);
+
+        $pdf->save(
+            '../storage/logs/invoice.pdf'
+        );
+    });
 });
