@@ -1,6 +1,5 @@
 ## Get started Laravel project
 
-
 #### Install composer dependencies
 ```sh
 composer install
@@ -78,6 +77,9 @@ sail php artisan db:seed
 sail php artisan storage:link --force
 ```
 
+#### 🎊DONE🎉
+
 -----
 
-#### 🎊DONE🎉
+### Do Zero ao Deploy
+![Do Zero ao Deploy](./public/imgs/qr-code-dzad.png)
